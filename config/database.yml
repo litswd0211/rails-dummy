@@ -1,0 +1,41 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+  host: localhost
+  port: 3306
+
+development:
+  primary:
+    <<: *default
+    database: server_development
+  user_shard_1:
+    <<: *default
+    database: server_development_shard_1
+  user_shard_2:
+    <<: *default
+    database: server_development_shard_2
+
+test:
+  primary:
+    <<: *default
+    database: server_test
+  user_shard_1:
+    <<: *default
+    database: server_test_shard_1
+  user_shard_2:
+    <<: *default
+    database: server_test_shard_2
+
+production:
+  primary:
+    <<: *default
+    database: server_production
+  user_shard_1:
+    <<: *default
+    database: server_production_shard_1
+  user_shard_2:
+    <<: *default
+    database: server_production_shard_2
